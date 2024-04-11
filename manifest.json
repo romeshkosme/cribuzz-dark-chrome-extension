@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "Cricbuzz Dark",
+  "description": "Cribuzz Dark is an extension for dark theme.",
+  "version": "1.0",
+  "action": {
+    "default_popup": "./popup/popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.cricbuzz.com/*"],
+      "js": ["./scripts/content.js"]
+    }
+  ],
+  "permissions": [
+    "tabs", "storage"
+  ],
+  "host_permissions": ["https://www.cricbuzz.com/*"]
+}
