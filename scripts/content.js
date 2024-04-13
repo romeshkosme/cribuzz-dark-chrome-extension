@@ -9,6 +9,12 @@ async function main() {
   mutate_home_bg();
   mutate_home_match_list();
   subscribe();
+  mutate_home_news_block();
+  mutate_home_photos_block();
+  mutate_home_schedule_block();
+  mutate_home_mid_col();
+  mutate_home_featured_videos();
+  mutate_home_special_block();
 }
 // subscribe Mutation
 function subscribe() {
@@ -92,8 +98,110 @@ function subscribe_home_match_list() {
   }
 }
 
+function mutate_home_news_block() {
+  const TARGET = document.getElementById("cb-news-blck");
+
+  if (TARGET) {
+    TARGET.style.backgroundColor = "#4a4a4a";
+  
+    const NEWS_LIST = TARGET.querySelectorAll(".cb-lst-itm");
+
+    if (NEWS_LIST && NEWS_LIST.length) {
+      for (const elem of NEWS_LIST) {
+        elem.style.backgroundColor = "#4a4a4a";
+        elem.children[0].style.color = "#fff"; // news text color 
+        elem.children[1].style.color = "#f0f0f0";
+      }
+    }
+  }
+}
+
+function mutate_home_photos_block() {
+  const TARGET = document.getElementById("hm-photos-blk");
+
+  if (!TARGET) return;
+
+  TARGET.style.backgroundColor = "#4a4a4a";
+
+  const PHOTOS_LIST = TARGET.querySelectorAll(".cb-lst-itm");
+
+  if (!PHOTOS_LIST) return;
+
+  for (const elem of PHOTOS_LIST) {
+    elem.style.backgroundColor = "#4a4a4a";
+    elem.children[0].children[1].style.color = "#fff"; // news text color 
+    elem.children[0].children[2].style.color = "#f0f0f0";
+  }
+}
+
+function mutate_home_schedule_block() {
+  const NODE = document.getElementById("cb-news-blck");
+  if (!NODE) return;
+  const TARGET = NODE.parentElement.children[2];
+  
+  TARGET.style.backgroundColor = "#4a4a4a";
+
+  const SCHEDULE_LIST = TARGET.querySelectorAll(".cb-lst-itm");
+
+  if (!SCHEDULE_LIST || !SCHEDULE_LIST.length) return;
+
+  for (const elem of SCHEDULE_LIST) {
+    elem.style.backgroundColor = "#4a4a4a";
+    elem.children[0].style.color = "#fff";
+    elem.children[1].style.color = "#f0f0f0";
+  }
+}
+
+function mutate_home_mid_col() {
+  const NODE = document.getElementsByClassName("cb-hm-mid");
+
+  if (!NODE || !NODE.length || NODE.length > 1) {
+    return;
+  }
+  
+  NODE[0].style.backgroundColor = "#4a4a4a";
+  NODE[0].style.borderColor = "#202124";
+  const TARGET = NODE[0];
+
+  for (const elem of TARGET.children) {
+    elem.style.backgroundColor = "#4a4a4a";
+    elem.children[0].style.color = "#f2f2f2";
+    elem.children[2].children[0].style.color = "#fff";
+    elem.children[3].style.color = "#f2f2f2";
+    const LINK = elem.querySelectorAll("a > .big-crd-rltd-txt");
+    if (LINK && LINK.length) LINK[0].style.color = "#1866DB";
+    const SML_CRD_HDL = elem.querySelectorAll(".sml-crd-hdln");
+    if (SML_CRD_HDL && SML_CRD_HDL.length) {
+      SML_CRD_HDL[0].children[0].style.color = "#fff";
+      SML_CRD_HDL[0].parentElement.children[1].style.color = "#f2f2f2";
+    }
+  }
+}
+
+function mutate_home_featured_videos() {
+  const NODE = document.getElementById("latest-vid-mod");
+
+  NODE.style.backgroundColor = "#4a4a4a";
+}
+
+function mutate_home_special_block() {
+  const NODE = document.getElementById("latest-vid-mod");
+
+  const TARGET = NODE.parentElement.children[4];
+
+  TARGET.style.backgroundColor = "#4a4a4a";
+
+  const TARGET_CHILD = TARGET.querySelectorAll(".cb-col");
+
+  if (TARGET_CHILD && TARGET_CHILD.length) {
+    for (const elem of TARGET_CHILD) {
+      elem.children[0].style.color = "#fff";
+      elem.children[1].style.color = "#f2f2f2";
+    }
+  }
+}
+
 chrome.storage.onChanged.addListener(function(changes, namespace) {
-  console.log(changes)
   if (!changes.dark_mode.new_value) {
     unsubscribe();
   } else {
