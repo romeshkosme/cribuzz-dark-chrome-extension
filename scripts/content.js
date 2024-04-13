@@ -2,19 +2,31 @@ const MATCH_CARD_BG = "#4a4a4a";
 const SUBSCRIPTION_LIST = []; // all observer list
 
 async function main() {
+  const LOCATION = window.location;
   let res = await chrome.storage.sync.get(["dark_mode"]).then((response) => {
     return response.dark_mode || false;
   });
   if (!res) return;
   mutate_home_bg();
-  mutate_home_match_list();
-  subscribe();
-  mutate_home_news_block();
-  mutate_home_photos_block();
-  mutate_home_schedule_block();
-  mutate_home_mid_col();
-  mutate_home_featured_videos();
-  mutate_home_special_block();
+  if (LOCATION?.pathname === "/") {
+    mutate_home_match_list();
+    subscribe();
+    mutate_quick_navbar();
+    mutate_quick_access();
+    mutate_ad_block();
+    mutate_home_news_block();
+    mutate_home_photos_block();
+    mutate_home_schedule_block();
+    mutate_home_mid_col();
+    mutate_home_featured_videos();
+    mutate_home_special_block();
+  } else if (LOCATION?.pathname.includes("live-cricket-scores")) {
+    // live match score
+    match_bg();
+    match_nav_head();
+    match_nav_links();
+    match_commentary();
+  }
 }
 // subscribe Mutation
 function subscribe() {
@@ -98,6 +110,49 @@ function subscribe_home_match_list() {
   }
 }
 
+function mutate_quick_navbar() {
+  const TARGET = document.getElementById("cb-qck-navbar");
+
+  if (!TARGET) return;
+  
+  TARGET.style.backgroundColor = "#4a4a4a";
+  for (const elem of TARGET.children) {
+    elem.style.color = "#f2f2f2"
+  }
+  TARGET.children[0].style.color = "#fff";
+}
+
+function mutate_quick_access() {
+  const TARGET = document.querySelector("#page-wrapper > div.cb-bg-white.cb-col.cb-col-100.disp-flex.align-center.cb-qck-lnk.ng-scope");
+  
+  if (!TARGET) return;
+
+  TARGET.style.backgroundColor = "#4a4a4a";
+
+  const HEADING = TARGET.querySelector("h1");
+  HEADING.style.color = "#fff";
+
+  const NAV = TARGET.querySelector("nav");
+
+  if (!NAV) return;
+
+  const LINK_LIST = NAV.children[0];
+
+  for (const elem of LINK_LIST.children) {
+    elem.style.backgroundColor = "#333";
+    elem.style.color = "#f2f2f2";
+  }
+}
+
+function mutate_ad_block() {
+  const TARGET = document.getElementsByClassName("cb-ad-unit");
+
+  if (TARGET && TARGET.length) {
+    for (const elem of TARGET) {
+      elem.style.backgroundColor = "#4a4a4a";
+    }
+  }
+}
 function mutate_home_news_block() {
   const TARGET = document.getElementById("cb-news-blck");
 
