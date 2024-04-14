@@ -1,7 +1,7 @@
 import live_score_page from "./match-content.js";
 
 const MATCH_CARD_BG = "#4a4a4a";
-const SUBSCRIPTION_LIST = []; // all observer list
+export const SUBSCRIPTION_LIST = []; // all observer list
 
 async function main() {
   const LOCATION = window.location;
