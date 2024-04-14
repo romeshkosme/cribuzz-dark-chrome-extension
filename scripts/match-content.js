@@ -15,16 +15,19 @@ export default function live_score_page() {
   mutate_toss_decision();
   mutate_batter();
   mutate_bowler();
+  mutate_latest_news();
+  mutate_latest_photos();
+  mutate_match_result();
+  mutate_mom();
+  mutate_bowling_score();
   subscribe();
 }
 
 function subscribe() {
   const TARGET = document.querySelector("#matchCenter > div.cb-col.cb-col-67.cb-nws-lft-col.cb-comm-pg");
-  console.log("subscribedsdfsdf---")
   if (!TARGET) return;
 
   const callback = (mutation, observer) => {
-    console.log("update dom");
     mutate_mini_score_board();
     mutate_key_stats();
     mutate_recent();
@@ -35,6 +38,9 @@ function subscribe() {
     mutate_toss_decision();
     mutate_batter();
     mutate_bowler();
+    mutate_match_result();
+    mutate_mom();
+    mutate_bowling_score();
   }
 
   const observer = new MutationObserver(callback);
@@ -200,4 +206,52 @@ function mutate_bowler() {
     const batter = elem.querySelector("div > div.cb-col.cb-col-50 > a");
     if (batter) batter.style.color = "#C6DEA6";
   }
+}
+
+function mutate_latest_news() {
+  const TARGET = document.getElementById("latest-news-mod");
+  if (!TARGET) return;
+
+  for (const elem of TARGET.children) {
+    elem.style.backgroundColor = "#4a4a4a";
+    const title = elem.querySelector(".cb-nws-hdln-ancr");
+    if (title) title.style.color = "#fff";
+    const time = elem.querySelector(".cb-nws-time");
+    if (time) time.style.color = "#f2f2f2";
+  }
+}
+
+function mutate_latest_photos() {
+  const TARGET = document.getElementById("latest-photos-mod")
+  if (!TARGET) return;
+
+  for (const elem of TARGET.children) {
+    elem.style.backgroundColor = "#4a4a4a";
+    const title = elem.querySelector(".cb-nws-hdln-ancr");
+    if (title) title.style.color = "#fff";
+    const time = elem.querySelector(".cb-nws-time");
+    if (time) time.style.color = "#f2f2f2";
+  }
+}
+
+function mutate_match_result() {
+  const TARGET = document.querySelector("#matchCenter > div.cb-col.cb-col-67.cb-nws-lft-col.cb-comm-pg > div.ng-scope > div.cb-col.cb-col-100.cb-mini-col.cb-min-comp.ng-scope > div.cb-col.cb-col-100.cb-min-stts.cb-text-complete");
+  if (!TARGET) return;
+
+  TARGET.style.color = "#F78764";
+}
+
+function mutate_mom() {
+  const NODE = document.querySelector("#matchCenter > div.cb-col.cb-col-67.cb-nws-lft-col.cb-comm-pg > div.ng-scope > div.cb-col.cb-col-100.cb-mini-col.cb-min-comp.ng-scope > div.cb-col.cb-col-50.cb-mom-itm.ng-scope");
+  if (!NODE) return;
+  for (const elem of NODE.children) {
+    elem.style.color = "#f2f2f2";
+  }
+}
+
+function mutate_bowling_score() {
+  const TARGET = document.querySelector("#matchCenter > div.cb-col.cb-col-67.cb-nws-lft-col.cb-comm-pg > div.ng-scope > div.cb-col.cb-col-100.cb-mini-col.cb-min-comp.ng-scope > div.cb-col.cb-col-100.cb-col-scores > div.cb-col.cb-col-67.cb-scrs-wrp > h2.cb-col.cb-col-100.cb-min-tm.cb-text-gray.ng-binding");
+  if (!TARGET) return;
+
+  TARGET.style.color = "#f2f2f2";
 }
