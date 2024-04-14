@@ -1,3 +1,5 @@
+import live_score_page from "./match-content.js";
+
 const MATCH_CARD_BG = "#4a4a4a";
 const SUBSCRIPTION_LIST = []; // all observer list
 
@@ -22,10 +24,10 @@ async function main() {
     mutate_home_special_block();
   } else if (LOCATION?.pathname.includes("live-cricket-scores")) {
     // live match score
-    match_bg();
-    match_nav_head();
-    match_nav_links();
-    match_commentary();
+    console.log("live")
+    live_score_page();
+  } else if (LOCATION.pathname.includes("live-cricket-scorecard")) {
+    // score card
   }
 }
 // subscribe Mutation
@@ -220,15 +222,26 @@ function mutate_home_mid_col() {
 
   for (const elem of TARGET.children) {
     elem.style.backgroundColor = "#4a4a4a";
-    elem.children[0].style.color = "#f2f2f2";
-    elem.children[2].children[0].style.color = "#fff";
-    elem.children[3].style.color = "#f2f2f2";
-    const LINK = elem.querySelectorAll("a > .big-crd-rltd-txt");
-    if (LINK && LINK.length) LINK[0].style.color = "#1866DB";
-    const SML_CRD_HDL = elem.querySelectorAll(".sml-crd-hdln");
-    if (SML_CRD_HDL && SML_CRD_HDL.length) {
-      SML_CRD_HDL[0].children[0].style.color = "#fff";
-      SML_CRD_HDL[0].parentElement.children[1].style.color = "#f2f2f2";
+    if (elem.children.length) {
+      elem.children[0].style.color = "#f2f2f2";
+      elem.children[2].children[0].style.color = "#fff";
+      elem.children[3].style.color = "#f2f2f2";
+
+      const LINK = elem.querySelectorAll("a.big-crd-rltd-txt");
+      if (LINK && LINK.length) {
+        for (const link of LINK) {
+          link.style.color = "#7EBDC3";
+          const pre_tag = link.querySelector(".cb-pretag");
+          if (pre_tag) {
+            pre_tag.style.color = "#e63946"
+          }
+        }
+      }
+      const SML_CRD_HDL = elem.querySelectorAll(".sml-crd-hdln");
+      if (SML_CRD_HDL && SML_CRD_HDL.length) {
+        SML_CRD_HDL[0].children[0].style.color = "#fff";
+        SML_CRD_HDL[0].parentElement.children[1].style.color = "#f2f2f2";
+      }
     }
   }
 }
