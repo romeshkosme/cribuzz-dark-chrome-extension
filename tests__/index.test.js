@@ -22,13 +22,33 @@ afterEach(async () => {
   browser = undefined;
 });
 
-test('popup renders correctly', async () => {
+test('Popup renders correctly', async () => {
   const page = await browser.newPage();
   await page.goto(`chrome-extension://${EXTENSION_ID}/popup/popup.html`);
 
   const heading = await page.$eval('h1', (e) => e.textContent);
-  console.log("heading - ", heading);
-//  const children = await list.$$('li');
 
   expect(heading).toBe("Cricbuzz Dark");
+});
+
+test('Popup renders switch input', async () => {
+  const page = await browser.newPage();
+  await page.goto(`chrome-extension://${EXTENSION_ID}/popup/popup.html`);
+
+  const input = await page.$eval('input', (e) => e.name)
+
+  expect(input).toBe("dark-mode");
+})
+
+test('Open Cribuzz', async () => {
+  const page = await browser.newPage();
+  await page.goto(`chrome-extension://${EXTENSION_ID}/popup/popup.html`);
+
+  await page.click("#slider-dark-mode");
+
+  await page.goto("https://www.cricbuzz.com");
+
+  const bg = await page.$eval('body', (e) => e.style);
+
+  expect("bg").toBe("bg");
 });
