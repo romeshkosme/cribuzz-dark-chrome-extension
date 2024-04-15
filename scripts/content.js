@@ -1,4 +1,5 @@
 import live_score_page from "./match-content.js";
+import mutate_score_board from "./score-board-content.js";
 
 const MATCH_CARD_BG = "#4a4a4a";
 export const SUBSCRIPTION_LIST = []; // all observer list
@@ -24,10 +25,10 @@ async function main() {
     mutate_home_special_block();
   } else if (LOCATION?.pathname.includes("live-cricket-scores")) {
     // live match score
-    console.log("live")
     live_score_page();
   } else if (LOCATION.pathname.includes("live-cricket-scorecard")) {
     // score card
+    mutate_score_board();
   }
 }
 // subscribe Mutation

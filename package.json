@@ -8,8 +8,8 @@
   },
   "scripts": {
     "test": "jest ./tests__/",
-    "start": "parcel watch manifest.json --host localhost --config @parcel/config-webextension",
-    "build": "parcel build manifest.json --config @parcel/config-webextension",
+    "start": "rm -rf dist .parcel-cache && parcel watch manifest.json 'scripts/*js' --host localhost --config @parcel/config-webextension",
+    "build": "rm -rf dist .parcel-cache && parcel build manifest.json --config @parcel/config-webextension",
     "prepare": "husky"
   }
 }

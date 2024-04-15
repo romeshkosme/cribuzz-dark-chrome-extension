@@ -55,7 +55,7 @@ function match_bg() {
   TARGET.style.backgroundColor = "#4a4a4a";
 }
 
-function match_nav_head() {
+export function match_nav_head() {
   const TARGET = document.getElementsByClassName("cb-nav-main");
 
   if (TARGET && TARGET.length && TARGET.length === 1) {
@@ -84,7 +84,7 @@ function match_nav_head() {
   }
 }
 
-function match_nav_links() {
+export function match_nav_links() {
   const NODES = document.querySelectorAll(".cb-nav-bar > a.cb-nav-tab");
 
   for (const elem of NODES) {
@@ -208,7 +208,7 @@ function mutate_bowler() {
   }
 }
 
-function mutate_latest_news() {
+export function mutate_latest_news() {
   const TARGET = document.getElementById("latest-news-mod");
   if (!TARGET) return;
 

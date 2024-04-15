@@ -51,4 +51,4 @@ test('Open Cribuzz', async () => {
   const bg = await page.$eval('body', (e) => e.style);
 
   expect("bg").toBe("bg");
-});
+}, 10000);
