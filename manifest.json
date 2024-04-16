@@ -13,9 +13,8 @@
     }
   ],
   "permissions": [
-    "tabs", "storage"
+    "storage"
   ],
-  "host_permissions": ["https://www.cricbuzz.com/*"],
   "web_accessible_resources": [
     {
       "resources": ["script/*.js"],
