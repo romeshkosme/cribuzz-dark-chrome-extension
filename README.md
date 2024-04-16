@@ -5,16 +5,9 @@ Cricbuzz Dark is a Chrome extension that applies a dark theme to the Cricbuzz we
 
 ## Features
 
-Transforms the Cricbuzz homepage and match commentary pages into a dark mode theme.
+Transforms the Cricbuzz homepage, commentary and scoreboard page into a dark mode theme.
 
-
-## Contributing
-
-Contributions are always welcome!
-
-See `contributing.md` for ways to get started.
-
-Please adhere to this project's `code of conduct`.
+This extension is currently a work in progress! Feel free to contribute by forking the repository and raising Pull Requests (PRs) to add support for more pages.
 
 
 ## Feedback
