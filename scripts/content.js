@@ -1,5 +1,9 @@
 import live_score_page from "./match-content.js";
 import mutate_score_board from "./score-board-content.js";
+import mutate_match_squad from "./squad-content.js";
+import mutate_match_highlight from "./match-highlights.js";
+import mutate_full_commentary from "./match-commentary.js";
+import mutate_match_facts from "./match-facts.js";
 
 const MATCH_CARD_BG = "#4a4a4a";
 export const SUBSCRIPTION_LIST = []; // all observer list
@@ -29,6 +33,14 @@ async function main() {
   } else if (LOCATION.pathname.includes("live-cricket-scorecard")) {
     // score card
     mutate_score_board();
+  } else if (LOCATION.pathname.includes("cricket-match-squads")) {
+    mutate_match_squad();
+  } else if (LOCATION.pathname.includes("cricket-match-highlights")) {
+    mutate_match_highlight();
+  } else if (LOCATION.pathname.includes("live-cricket-full-commentary")) {
+    mutate_full_commentary();
+  } else if (LOCATION.pathname.includes("cricket-match-facts")) {
+    mutate_match_facts();
   }
 }
 // subscribe Mutation

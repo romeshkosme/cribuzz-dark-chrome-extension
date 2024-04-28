@@ -221,7 +221,7 @@ export function mutate_latest_news() {
   }
 }
 
-function mutate_latest_photos() {
+export function mutate_latest_photos() {
   const TARGET = document.getElementById("latest-photos-mod")
   if (!TARGET) return;
 
