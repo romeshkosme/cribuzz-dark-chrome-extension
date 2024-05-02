@@ -4,6 +4,7 @@ import mutate_match_squad from "./squad-content.js";
 import mutate_match_highlight from "./match-highlights.js";
 import mutate_full_commentary from "./match-commentary.js";
 import mutate_match_facts from "./match-facts.js";
+import mutate_schedule_result from "./mutate-schedule-result.js";
 
 const MATCH_CARD_BG = "#4a4a4a";
 export const SUBSCRIPTION_LIST = []; // all observer list
@@ -14,6 +15,7 @@ async function main() {
     return response.dark_mode || false;
   });
   if (!res) return;
+  const SERIES_SCHEDULE_REGEX = new RegExp(/cricket-series.*matches+$/);
   mutate_home_bg();
   if (LOCATION?.pathname === "/") {
     mutate_home_match_list();
@@ -41,6 +43,8 @@ async function main() {
     mutate_full_commentary();
   } else if (LOCATION.pathname.includes("cricket-match-facts")) {
     mutate_match_facts();
+  } else if (SERIES_SCHEDULE_REGEX.test(LOCATION.pathname)) {
+    mutate_schedule_result();
   }
 }
 // subscribe Mutation
