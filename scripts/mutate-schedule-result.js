@@ -43,7 +43,7 @@ function mutate_match_block(){
   try {
     const NODE = document.querySelectorAll(".cb-srs-mtchs-tm");
     if (!NODE) return;
-console.log(NODE)
+
     for (const elem of NODE) {
       const match_link = elem.querySelector("a.text-hvr-underline")
       if (match_link) match_link.style.color = "#fff";

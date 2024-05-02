@@ -44,7 +44,6 @@ async function main() {
   } else if (LOCATION.pathname.includes("cricket-match-facts")) {
     mutate_match_facts();
   } else if (SERIES_SCHEDULE_REGEX.test(LOCATION.pathname)) {
-    console.log("series schedule..")
     mutate_schedule_result();
   }
 }
