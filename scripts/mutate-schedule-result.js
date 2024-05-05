@@ -68,7 +68,7 @@ function mutate_match_block(){
   }
 }
 
-function mutate_match_count_length() {
+export function mutate_match_count_length() {
   try {
     const NODE = document.querySelector("#page-wrapper > div.cb-col-100.cb-col.cb-nav-main.cb-bg-white > div");
     if (!NODE) return;
