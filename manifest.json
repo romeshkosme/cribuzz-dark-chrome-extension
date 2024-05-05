@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Cricbuzz Dark",
   "description": "Cribuzz Dark is an extension for dark theme.",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "action": {
     "default_popup": "./popup/popup.html"
   },
