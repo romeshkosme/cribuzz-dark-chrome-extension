@@ -5,6 +5,7 @@ import mutate_match_highlight from "./match-highlights.js";
 import mutate_full_commentary from "./match-commentary.js";
 import mutate_match_facts from "./match-facts.js";
 import mutate_schedule_result from "./mutate-schedule-result.js";
+import mutate_series_squad from "./mutate-series-squad.js";
 
 const MATCH_CARD_BG = "#4a4a4a";
 export const SUBSCRIPTION_LIST = []; // all observer list
@@ -16,6 +17,8 @@ async function main() {
   });
   if (!res) return;
   const SERIES_SCHEDULE_REGEX = new RegExp(/cricket-series.*matches+$/);
+  const SERIES_SQUAD_REGEX = new RegExp(/cricket-series.*squads+$/);
+
   mutate_home_bg();
   if (LOCATION?.pathname === "/") {
     mutate_home_match_list();
@@ -30,10 +33,8 @@ async function main() {
     mutate_home_featured_videos();
     mutate_home_special_block();
   } else if (LOCATION?.pathname.includes("live-cricket-scores")) {
-    // live match score
     live_score_page();
   } else if (LOCATION.pathname.includes("live-cricket-scorecard")) {
-    // score card
     mutate_score_board();
   } else if (LOCATION.pathname.includes("cricket-match-squads")) {
     mutate_match_squad();
@@ -45,6 +46,8 @@ async function main() {
     mutate_match_facts();
   } else if (SERIES_SCHEDULE_REGEX.test(LOCATION.pathname)) {
     mutate_schedule_result();
+  } else if (SERIES_SQUAD_REGEX.test(LOCATION.pathname)) {
+    mutate_series_squad();
   }
 }
 // subscribe Mutation
