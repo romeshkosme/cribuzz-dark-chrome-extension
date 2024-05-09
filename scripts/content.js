@@ -6,6 +6,7 @@ import mutate_full_commentary from "./match-commentary.js";
 import mutate_match_facts from "./match-facts.js";
 import mutate_schedule_result from "./mutate-schedule-result.js";
 import mutate_series_squad from "./mutate-series-squad.js";
+import mutate_points_table from "./mutate-points-table.js";
 
 const MATCH_CARD_BG = "#4a4a4a";
 export const SUBSCRIPTION_LIST = []; // all observer list
@@ -18,7 +19,7 @@ async function main() {
   if (!res) return;
   const SERIES_SCHEDULE_REGEX = new RegExp(/cricket-series.*matches+$/);
   const SERIES_SQUAD_REGEX = new RegExp(/cricket-series.*squads+$/);
-
+  const POINTS_TABLE_SCHEDULE_REGEX = new RegExp(/cricket-series.*points-table+$/);
   mutate_home_bg();
   if (LOCATION?.pathname === "/") {
     mutate_home_match_list();
@@ -48,6 +49,8 @@ async function main() {
     mutate_schedule_result();
   } else if (SERIES_SQUAD_REGEX.test(LOCATION.pathname)) {
     mutate_series_squad();
+  } else if (POINTS_TABLE_SCHEDULE_REGEX.test(LOCATION.pathname)) {
+    mutate_points_table();
   }
 }
 // subscribe Mutation
