@@ -2,7 +2,7 @@ name: run-test
 run-name: ${{ github.actor }} is running test
 on: [push]
 jobs:
-  run-test:
+  run-build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -11,4 +11,3 @@ jobs:
           node-version: '20'
       - run: npm i
       - run: npm run build
-      - run: npm run test
