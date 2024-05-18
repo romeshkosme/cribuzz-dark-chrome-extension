@@ -8,7 +8,7 @@ let browser;
 beforeEach(async () => {
   // TODO: Launch the browser.
    browser = await puppeteer.launch({
-    headless: false,
+    headless: true,
     args: [
       `--disable-extensions-except=${EXTENSION_PATH}`,
       `--load-extension=${EXTENSION_PATH}`
