@@ -10,8 +10,30 @@ export default function mutate_schedule_result() {
     mutate_schedule_table_header();
     mutate_match_block();
     mutate_match_count_length();
+    subscribe();
   } catch (error) {
     console.error(error);
+  }
+}
+
+function subscribe() {
+  try {
+    const TARGET = document.querySelector("#page-wrapper > div.cb-bg-white.cb-col-100.cb-col.cb-hm-rght.cb-series-filters");
+    if (!TARGET) return;
+
+    const callback = (mutation, observer) => {
+      mutate_schedule_table_header();
+      mutate_match_block();
+      mutate_match_count_length();
+    }
+
+    const observer = new MutationObserver(callback);
+
+    observer.observe(TARGET, { attributes: true, childList: true, subtree: true });
+
+    SUBSCRIPTION_LIST.push(observer);
+  } catch (error) {
+    console.log(error);
   }
 }
 
