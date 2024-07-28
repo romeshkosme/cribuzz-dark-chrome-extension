@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.1](https://github.com/romeshkosme/cribuzz-dark-chrome-extension/compare/v0.1.0...v0.1.1) (2024-07-28)
+
+
+### Bug Fixes
+
+* schedule result subscribe for filter result ([#9](https://github.com/romeshkosme/cribuzz-dark-chrome-extension/issues/9)) ([d0ff1f2](https://github.com/romeshkosme/cribuzz-dark-chrome-extension/commit/d0ff1f266d4b61c8c16c0bcca63313624d3d2bb5))
+
 ## [0.1.0](https://github.com/romeshkosme/cribuzz-dark-chrome-extension/compare/v0.0.2...v0.1.0) (2024-05-18)
 
 
